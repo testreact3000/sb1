@@ -26,6 +26,9 @@ function loadCities () {
      });	  
 }
 
+function changeCity (city) {
+  window.history.pushState({city},null,`/${city}`);
+}
 const routes = [ 
 	{ 
 	  path : "/", 
@@ -38,12 +41,12 @@ const routes = [
 	    { 
 	      path: "/:city", 
 	      action: (context,{city, cities}) => {
-		  return <Cities city={city} cities={cities} />
+		  return <Cities city={city} cities={cities} change={changeCity}/>
 	      }, 
 	    }, 
 	    { 
 	      path: '(.*)', 
-	      action: (context, {cities}) => <Cities cities={cities} /> , 
+	      action: (context, {cities}) => <Cities cities={cities} change={changeCity} /> , 
 	    }]
 	 } ]; 
 

@@ -6,10 +6,9 @@ class Cities extends Component {
      this.state={
        cities : props.cities,
        errors: [],
-       city: props.city||"",	     
+       city: props.city||"",
+       change: props.change || (()=>{}),     
      };	  
-     console.log(["city",props.city]);
-     	     
   }
 /*  componentDidMount(){
      loadCities()
@@ -20,8 +19,8 @@ class Cities extends Component {
      });  
   }*/
   handleChange(e){
-    console.log(e.target.value);	  
-    this.setState({city: e.target.value});
+    const city = e.target.value;	  
+    this.setState({city}, () => {this.state.change(city)});	  
   }	
   render() {
     let cities = this.state.cities.map((x,id)=>{
