@@ -26,6 +26,7 @@ class Cities extends Component {
      this.state={
        cities: [],
        errors: [],
+       city: props.city|"",	     
      };	  
   }
   componentDidMount(){
@@ -35,12 +36,15 @@ class Cities extends Component {
      }).catch((err)=>{
         this.setState({errors:[...this.state.errors,err]});
      });  
+  }
+  handleChange(e){
+    this.setState({city: e.target.value});
   }	
   render() {
     const cities = this.state.cities.map((x,id)=>{
        return <option key={id} value={x}>{x}</option>;
     })
-    return <select >{cities}</select>
+    return <select value={this.state.city} onChange={this.handleChange.bind(this)}>{cities}</select>
   }
 
 }
