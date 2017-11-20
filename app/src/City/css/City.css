@@ -1,0 +1,13 @@
+.city{
+  padding-top: 10px;
+}
+.city__weather{
+  font-size: 130px;
+  text-align:center;
+  display: inline-block;
+}
+.city__temp{
+  font-size: 30px;
+  text-align: center;
+  display: inline-block;
+}
