@@ -1,49 +1,38 @@
 import React, { Component } from 'react';
 
-
-function loadCities () {
-    return fetch('https://cors-anywhere.herokuapp.com/http://country.io/capital.json')
-     .then((resp)=>{
-	if(!resp.ok){
-	   throw Error(resp.statusText);
-	}     
-        return resp.json();
-     })
-     .then((resp)=>{
-	let cities = [];
-	for(let cc in resp){
-	   if(resp[cc]!==""){
-	     cities.push(resp[cc]);
-	   }
-	}
-	return cities;     
-     });	  
-}
-
 class Cities extends Component {
   constructor(props){
      super(props);
      this.state={
-       cities: [],
+       cities : props.cities,
        errors: [],
-       city: props.city|"",	     
+       city: props.city||"",	     
      };	  
+     console.log(["city",props.city]);
+     	     
   }
-  componentDidMount(){
+/*  componentDidMount(){
      loadCities()
      .then((cities)=>{
         this.setState({cities});
      }).catch((err)=>{
         this.setState({errors:[...this.state.errors,err]});
      });  
-  }
+  }*/
   handleChange(e){
+    console.log(e.target.value);	  
     this.setState({city: e.target.value});
   }	
   render() {
-    const cities = this.state.cities.map((x,id)=>{
+    let cities = this.state.cities.map((x,id)=>{
        return <option key={id} value={x}>{x}</option>;
     })
+    if(this.state.city===""){
+      cities = [
+        <option key={-1}>Select city</option>,
+        ...cities	    
+      ];	  
+    }	  
     return <select value={this.state.city} onChange={this.handleChange.bind(this)}>{cities}</select>
   }
 
