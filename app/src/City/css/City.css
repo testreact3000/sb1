@@ -1,5 +1,8 @@
 .city{
   padding-top: 10px;
+  width: 180px;
+  text-align:center;
+  display: inline-block;
 }
 .city__weather{
   font-size: 130px;

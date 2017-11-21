@@ -28,12 +28,13 @@ class Cities extends Component {
   }	
   loadCityWeather(city){
       clearTimeout(this.state.timeout);
-      this.setState({timeout:setTimeout(()=>{this.loadCityWeather(city)},1000*60)});	  
+      this.setState({timeout:setTimeout(()=>{this.loadCityWeather(city)},1000*60*30)});	  
       fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=bd5e378503939ddaee76f12ad7a97608`).then(
 	  (resp) => {
 	     if(resp.ok){
 	       return resp.json();
 	     }
+             		  
 	  }    
       ).then((json)=>{
          this.setState ({
