@@ -49,8 +49,8 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
     "getstorybook": "node node_modules/.bin/getstorybook",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "storybook": "source ./.env; export NODE_PATH; start-storybook -p 6006",
+    "build-storybook": "source ./.env; export NODE_PATH; build-storybook"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -98,6 +98,7 @@
     "@storybook/addon-actions": "^3.2.16",
     "@storybook/addon-links": "^3.2.16",
     "@storybook/cli": "^3.2.16",
-    "@storybook/react": "^3.2.16"
+    "@storybook/react": "^3.2.16",
+    "dotenv-webpack": "^1.5.4"
   }
 }

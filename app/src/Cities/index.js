@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import City from './City';
-import  './Cities/css/Cities.css'
+import City from 'City';
+import  'Cities/css/Cities.css';
+
 class Cities extends Component {
   constructor(props){
      super(props);

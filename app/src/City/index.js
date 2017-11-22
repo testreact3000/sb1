@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import './City/css/open-weather-icons.css';
-import './City/css/City.css';
+import 'City/css/open-weather-icons.css';
+import 'City/css/City.css';
 class City extends Component {
   render(){
     let icon, temp;

@@ -1,6 +1,6 @@
 import React from 'react';
-import City from '../src/City.js'; 
-import Cities from '../src/Cities.js';
+import City from 'City'; 
+import Cities from 'Cities';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';

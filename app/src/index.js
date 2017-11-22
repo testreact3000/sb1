@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import Cities from './Cities';
+import Cities from 'Cities';
 import registerServiceWorker from './registerServiceWorker';
 import UniversalRouter from 'universal-router';
 
