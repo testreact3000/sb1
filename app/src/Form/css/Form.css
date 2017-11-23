@@ -9,9 +9,8 @@ padding-top: 10px;
 padding-top: 10px;
 }
 .form__table{
-margin-top: 10px;	
-padding-top: 10px;
 border-collapse: collapse;
+margin-bottom: 10px;
 
 }
 .form__table tbody tr:nth-child(odd){

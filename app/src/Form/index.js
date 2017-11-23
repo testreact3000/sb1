@@ -56,7 +56,7 @@ class Form extends Component{
           </tr>		   
        </thead>
        <tbody>
-	{this.state.list.map(this.listItem)}
+	{this.state.list.map( (data, id) => this.listItem(data,this.state.list.length - id))}
        </tbody>		   
      </table>
      ):(<div className="form__table">No weather info yet. Left ther first one.</div>); 
@@ -64,6 +64,7 @@ class Form extends Component{
 	 if(this.state.error) error =<div class="form__error">Please select the city</div>;
     console.log(this.state);
     return <div>
+     {table}		   
      <form onSubmit={this.handleSubmit.bind(this)} className="form"> 	   
        {error}
        <Cities 
@@ -80,7 +81,6 @@ class Form extends Component{
        <input type="submit" value="Add"/>
 	</div>
      </form>
-     {table}   
     </div>;
    }
 }
