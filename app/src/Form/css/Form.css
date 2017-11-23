@@ -26,4 +26,8 @@ border-bottom : double black;
 border-left: 1px solid black;
 padding: 5px;
 }
+.form__error{
+color: red;	
+padding-bottom: 10px;
+}
 

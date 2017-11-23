@@ -60,9 +60,12 @@ class Form extends Component{
        </tbody>		   
      </table>
      ):(<div className="form__table">No weather info yet. Left ther first one.</div>); 
+     let error;
+	 if(this.state.error) error =<div class="form__error">Please select the city</div>;
     console.log(this.state);
     return <div>
      <form onSubmit={this.handleSubmit.bind(this)} className="form"> 	   
+       {error}
        <Cities 
 	   cities={this.props.cities} 
 	   change={this.changeCity.bind(this)} 
