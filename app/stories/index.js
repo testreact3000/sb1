@@ -1,6 +1,7 @@
 import React from 'react';
 import City from 'City'; 
 import Cities from 'Cities';
+import Form from 'Form';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
@@ -19,4 +20,5 @@ storiesOf('City', module)
 storiesOf('Cities', module)
     .add('Not selected', ()=>(<Cities cities={["London","Moscow"]}/>))
     .add('Selected', () => (<Cities cities={["London","Moscow"]} city="London"/>))	
-
+storiesOf('Form', module)
+    .add('Initial', () => <Form cities={["London","Moscow","Dhaka","Mata Utu","Apia","Ouagadougou"]}/>)

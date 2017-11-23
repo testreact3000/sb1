@@ -1,7 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import Cities from 'Cities';
 import registerServiceWorker from './registerServiceWorker';
 import UniversalRouter from 'universal-router';
@@ -26,8 +24,8 @@ function loadCities () {
      });	  
 }
 
-function changeCity (city) {
-  window.history.pushState({city},null,`/${city}`);
+function changeCity (data) {
+  window.history.pushState({city:data.city},null,`/${data.city}`);
 }
 const routes = [ 
 	{ 

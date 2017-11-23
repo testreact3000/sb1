@@ -1,0 +1,29 @@
+.form{
+text-align: center;
+display: inline-block;
+}
+.form__comment{
+padding-top: 10px;
+}
+.form__submit{
+padding-top: 10px;
+}
+.form__table{
+margin-top: 10px;	
+padding-top: 10px;
+border-collapse: collapse;
+
+}
+.form__table tbody tr:nth-child(odd){
+background: #eeeeee;
+}
+.form__table thead tr{
+border-bottom : double black;
+}
+.form__table th:not(:first-child),
+.form__table td:not(:first-child)
+{
+border-left: 1px solid black;
+padding: 5px;
+}
+

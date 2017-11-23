@@ -6,21 +6,27 @@ class Cities extends Component {
   constructor(props){
      super(props);
      this.state={
-       cities : props.cities,
+       cities : props.cities || [],
        errors: [],
        city: props.city||"",
        change: props.change || (()=>{}),
        weather: null,
        weather_date: null,
-       timeout: null,     
      };	  
   }
+  get value () {
+     return {
+        city: this.state.city,
+	weather : this.state.weather,
+	weather_date : this.state.weather_date,
+     }
+  }	
   handleChange(e){
     const city = e.target.value;	  
     console.log(['change',city]);	  
-    this.setState({city}, () => {
-	    this.state.change(city);
-            this.loadCityWeather(city); 
+    this.setState({city, weather: null, weather_date: null, errors:[]}, () => {
+      this.state.change(this.value);
+      this.loadCityWeather(city); 
     });	  
   }
   componentDidMount(){
@@ -41,7 +47,10 @@ class Cities extends Component {
          this.setState ({
             weather_date : new Date(),
             weather : json,		 
+	 },()=>{
+	   this.state.change(this.value)
 	 });
+	      
       });
   }	
   render() {
@@ -55,7 +64,10 @@ class Cities extends Component {
       ];	  
     }	  
     return <div className="cities">
-		  <select value={this.state.city} onChange={this.handleChange.bind(this)}>{cities}</select>
+		  <select 
+	            value={this.state.city} 
+	            onChange={this.handleChange.bind(this)} 
+		    >{cities}</select>
                   <City 
 	             weather={this.state.weather} 
 	             updated={this.state.weather_date}
