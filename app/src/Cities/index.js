@@ -23,14 +23,12 @@ class Cities extends Component {
   }	
   handleChange(e){
     const city = e.target.value;	  
-    console.log(['change',city]);	  
     this.setState({city, weather: null, weather_date: null, errors:[]}, () => {
       this.state.change(this.value);
       this.loadCityWeather(city); 
     });	  
   }
   componentDidMount(){
-    console.log(['mount',this.state.city]);	  
     this.loadCityWeather(this.state.city);
   }	
   loadCityWeather(city){

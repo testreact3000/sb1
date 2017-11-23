@@ -36,6 +36,7 @@
     "react": "^16.1.1",
     "react-dev-utils": "^4.2.1",
     "react-dom": "^16.1.1",
+    "store": "^2.0.12",
     "style-loader": "0.19.0",
     "sw-precache-webpack-plugin": "0.11.4",
     "universal-router": "^5.0.0",
@@ -51,7 +52,9 @@
     "test": "node scripts/test.js --env=jsdom",
     "getstorybook": "node node_modules/.bin/getstorybook",
     "storybook": "source ./.env; export NODE_PATH; start-storybook -p 6006",
-    "build-storybook": "source ./.env; export NODE_PATH; build-storybook"
+    "build-storybook": "source ./.env; export NODE_PATH; build-storybook",
+    "deploy-storybook": "source ./.env; export NODE_PATH; storybook-to-ghpages"
+
   },
   "jest": {
     "collectCoverageFrom": [
@@ -100,6 +103,7 @@
     "@storybook/addon-links": "^3.2.16",
     "@storybook/cli": "^3.2.16",
     "@storybook/react": "^3.2.16",
+    "@storybook/storybook-deployer": "^2.0.0",
     "dotenv-webpack": "^1.5.4"
   }
 }

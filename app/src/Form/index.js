@@ -5,7 +5,7 @@ import 'Form/css/Form.css';
 class Form extends Component{
    constructor(props){
      super(props);
-     this.state= {
+     this.state= this.props.defaults || {
        list: [],
        comment : "",
        info: null,
@@ -14,7 +14,6 @@ class Form extends Component{
    } 	
    handleSubmit(e){
      e.preventDefault();
-     console.log(['submit',this.state.info, this.state.comment]);
      if(this.state.info.city!==""){
        this.state.error = false;	     
        this.state.list.push({ 
@@ -26,7 +25,12 @@ class Form extends Component{
      }else{
        this.state.error = true;
      }
-     this.setState(this.state);	   
+	   
+     this.setState(this.state,()=>{
+      if(this.props.onSubmit!==undefined){
+        this.props.onSubmit(this.state);
+      }
+     });   
    }
    changeCity(info){
      this.setState({info});
@@ -35,7 +39,6 @@ class Form extends Component{
      this.setState({comment:e.target.value});	   
    }
    listItem(data,id){
-	   console.log([data,id]);
       let wd = _.get(data,"info.weather_date");
       wd = (wd === undefined)?"—":(wd.toString());
       return <tr key={id}>
@@ -62,7 +65,6 @@ class Form extends Component{
      ):(<div className="form__table">No weather info yet. Left ther first one.</div>); 
      let error;
 	 if(this.state.error) error =<div class="form__error">Please select the city</div>;
-    console.log(this.state);
     return <div>
      {table}		   
      <form onSubmit={this.handleSubmit.bind(this)} className="form"> 	   
@@ -70,7 +72,7 @@ class Form extends Component{
        <Cities 
 	   cities={this.props.cities} 
 	   change={this.changeCity.bind(this)} 
-	   city={this.props.city}
+	   city={_.get(this.state,"info.city")}
        />
        
        <textarea className="form__comment"

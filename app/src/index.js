@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Cities from 'Cities';
+import Form from 'Form';
 import registerServiceWorker from './registerServiceWorker';
 import UniversalRouter from 'universal-router';
-
+const store = require('store');
 
 function loadCities () {
     return fetch('https://cors-anywhere.herokuapp.com/http://country.io/capital.json')
@@ -25,7 +26,10 @@ function loadCities () {
 }
 
 function changeCity (data) {
-  window.history.pushState({city:data.city},null,`/${data.city}`);
+  window.history.pushState({city:data.city},null,`/city/${data.city}`);
+}
+function saveList(data){
+ store.set('form', JSON.stringify(data));
 }
 const routes = [ 
 	{ 
@@ -37,15 +41,27 @@ const routes = [
 	  }, 
 	  children : [
 	    { 
-	      path: "/:city", 
+	      path: "/city/:city", 
 	      action: (context,{city, cities}) => {
 		  return <Cities city={city} cities={cities} change={changeCity}/>
 	      }, 
 	    }, 
 	    { 
-	      path: '(.*)', 
+	      path: '/city', 
 	      action: (context, {cities}) => <Cities cities={cities} change={changeCity} /> , 
-	    }]
+	    },
+            { 
+	      path: '(.*)',
+	      action: (context, {cities}) => {
+                      let data = store.get('form');
+		      if(data!==undefined){
+			 data = JSON.parse(data);
+		      }
+	       	      return <Form cities={cities} onSubmit={saveList} defaults={data}/>;
+	    }
+	    
+	    }		  
+	  ]
 	 } ]; 
 
 const router = new UniversalRouter(routes);
