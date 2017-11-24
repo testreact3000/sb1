@@ -14,19 +14,20 @@ class Form extends Component{
    } 	
    handleSubmit(e){
      e.preventDefault();
-     if(this.state.info.city!==""){
-       this.state.error = false;	     
-       this.state.list.push({ 
-	comment: this.state.comment,
-	info: this.state.info,
+     let state = _.clone(this.state,true); 
+     if(state.info.city!==""){
+       state.error = false;	     
+       state.list.push({ 
+	comment: state.comment,
+	info: state.info,
        });
-       this.state.comment="";
+       state.comment="";
        	     
      }else{
-       this.state.error = true;
+       state.error = true;
      }
 	   
-     this.setState(this.state,()=>{
+     this.setState(state,()=>{
       if(this.props.onSubmit!==undefined){
         this.props.onSubmit(this.state);
       }
