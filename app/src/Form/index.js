@@ -12,9 +12,7 @@ class Form extends Component {
 
   constructor(props) {
     super(props);
-    if (this.props.defaults !== undefined) {
-      this.state = this.props.defaults;
-    }
+    this.state = _.assign({}, Form.defaultProps, props.defaults);
   }
 
   handleSubmit(e) {
