@@ -1,9 +1,9 @@
-import React from "react";
-import ReactDOM from "react-dom";
 import Cities from "Cities";
 import Form from "Form";
-import registerServiceWorker from "./registerServiceWorker";
+import React from "react";
+import ReactDOM from "react-dom";
 import UniversalRouter from "universal-router";
+import registerServiceWorker from "./registerServiceWorker";
 const store = require("store");
 
 function loadCities() {

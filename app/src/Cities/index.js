@@ -1,5 +1,5 @@
-import React, { Component } from "react";
 import City from "City";
+import React, { Component } from "react";
 import "Cities/css/Cities.css";
 
 class Cities extends Component {
