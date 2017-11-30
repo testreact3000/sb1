@@ -21,6 +21,8 @@
     "plugins": [
         "react",
         "prettier",
+        "sort-imports-es6-autofix",
+
     ],
     "rules": {
         "indent": [
@@ -41,6 +43,16 @@
         ],
         "no-mixed-spaces-and-tabs": 2,
         "prettier/prettier": "error",
+        "sort-imports-es6-autofix/sort-imports-es6": [2, {
+          "ignoreCase": false,
+          "ignoreMemberSort": false,
+          "memberSyntaxSortOrder": ["none", "all", "multiple", "single"]
+        }],
+        "sort-imports": ["off", {
+          "ignoreCase": false,
+          "ignoreMemberSort": false,
+          "memberSyntaxSortOrder": ["none", "all", "multiple", "single"]
+       }],
 
     }
 }
