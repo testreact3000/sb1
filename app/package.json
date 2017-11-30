@@ -2,6 +2,7 @@
   "name": "app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://testreact3000.github.io/sb1/",
   "dependencies": {
     "autoprefixer": "7.1.6",
     "babel-core": "6.26.0",
@@ -14,13 +15,11 @@
     "chalk": "1.1.3",
     "css-loader": "0.28.7",
     "dotenv": "4.0.0",
-    "eslint": "4.10.0",
     "eslint-config-react-app": "^2.0.1",
     "eslint-loader": "1.9.0",
     "eslint-plugin-flowtype": "2.39.1",
     "eslint-plugin-import": "2.8.0",
     "eslint-plugin-jsx-a11y": "5.1.1",
-    "eslint-plugin-react": "7.4.0",
     "extract-text-webpack-plugin": "3.0.2",
     "file-loader": "1.1.5",
     "fs-extra": "3.0.1",
@@ -53,8 +52,9 @@
     "getstorybook": "node node_modules/.bin/getstorybook",
     "storybook": "source ./.env; export NODE_PATH; start-storybook -p 6006",
     "build-storybook": "source ./.env; export NODE_PATH; build-storybook",
-    "deploy-storybook": "source ./.env; export NODE_PATH; storybook-to-ghpages"
-
+    "deploy-storybook": "source ./.env; export NODE_PATH; storybook-to-ghpages",
+    "deploy": "npm run build&&gh-pages -d build",
+    "eslint": "source ./.env ;node node_modules/eslint/bin/eslint.js --config node_modules/eslint-config-react-app/index.js $NODE_PATH stories"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -104,6 +104,15 @@
     "@storybook/cli": "^3.2.16",
     "@storybook/react": "^3.2.16",
     "@storybook/storybook-deployer": "^2.0.0",
-    "dotenv-webpack": "^1.5.4"
+    "dotenv-webpack": "^1.5.4",
+    "eslint": "^4.10.0",
+    "eslint-config-fixable-all": "^4.11.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-jsdoc": "^3.2.0",
+    "eslint-plugin-prettier": "^2.3.1",
+    "eslint-plugin-react": "^7.5.1",
+    "eslint-plugin-react-app": "^1.0.2",
+    "gh-pages": "^1.1.0",
+    "prettier": "^1.8.2"
   }
 }
