@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/Form/index.js | app</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#cities">Cities</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Cities/index.js~Cities.html">Cities</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#city">City</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/City/index.js~City.html">City</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#form">Form</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Form/index.js~Form.html">Form</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/Form/index.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import Cities from &quot;Cities&quot;;
+import React, { Component } from &quot;react&quot;;
+import _ from &quot;lodash&quot;;
+import &quot;Form/css/Form.css&quot;;
+/**
+ * Wheather form.
+ * -----
+ * It contains wheather selector by city, comment field and submit button
+ * @reactProps {Function(state)} onSubmit
+ * @reactProps {Array} cities List of cities
+ */
+class Form extends Component {
+  /**
+   * @property {Array} list City data list
+   * @property {string} comment Unsaved comment field
+   * @property {object} info Unsaved weather info
+   * @property {Boolean} error Error flag
+   */
+  static get defaultProps() {
+    return {
+      list: [],
+      comment: &quot;&quot;,
+      info: null,
+      error: false
+    };
+  }
+
+  /**
+   * @ignore
+   */
+  constructor(props) {
+    super(props);
+    /**
+     * @ignore
+     */
+    this.state = _.assign({}, Form.defaultProps, props.defaults);
+  }
+
+  /**
+   * Handle submit
+   */
+  handleSubmit(e) {
+    e.preventDefault();
+    const state = _.clone(this.state, true);
+    if (state.info.city !== &quot;&quot;) {
+      state.error = false;
+      state.list.push({
+        comment: state.comment,
+        info: state.info
+      });
+      state.comment = &quot;&quot;;
+    } else {
+      state.error = true;
+    }
+    this.setState(state, () =&gt; {
+      if (this.props.onSubmit !== undefined) {
+        this.props.onSubmit(this.state);
+      }
+    });
+  }
+
+  /**
+   * Handle change city
+   */
+  changeCity(info) {
+    this.setState({ info });
+  }
+
+  /**
+   * Handle change comment
+   */
+  changeComment(e) {
+    this.setState({ comment: e.target.value });
+  }
+
+  /**
+   * Render single item of table
+   */
+  listItem(data, id) {
+    let wd = _.get(data, &quot;info.weather_date&quot;);
+    wd = wd === undefined ? &quot;&#x2014;&quot; : wd.toString();
+    return (
+      &lt;tr key={id}&gt;
+        &lt;td&gt;{data.info.city}&lt;/td&gt;
+        &lt;td&gt;{wd}&lt;/td&gt;
+        &lt;td&gt;{_.get(data, &quot;info.weather.main.temp&quot;, &quot;&#x2014;&quot;)}&lt;/td&gt;
+        &lt;td&gt;{_.get(data, &quot;info.weather.weather[0].description&quot;, &quot;&#x2014;&quot;)}&lt;/td&gt;
+        &lt;td&gt;{data.comment}&lt;/td&gt;
+      &lt;/tr&gt;
+    );
+  }
+
+  /**
+   * @ignore
+   */
+  render() {
+    const table =
+      this.state.list.length &gt; 0 ? (
+        &lt;table className=&quot;form__table&quot;&gt;
+          &lt;thead&gt;
+            &lt;tr&gt;
+              &lt;th&gt;Cty&lt;/th&gt;
+              &lt;th&gt;Weather date&lt;/th&gt;
+              &lt;th&gt;Temp&lt;/th&gt;
+              &lt;th&gt;Weather&lt;/th&gt;
+              &lt;th&gt;Comment&lt;/th&gt;
+            &lt;/tr&gt;
+          &lt;/thead&gt;
+          &lt;tbody&gt;
+            {this.state.list.map((data, id) =&gt;
+              this.listItem(data, this.state.list.length - id)
+            )}
+          &lt;/tbody&gt;
+        &lt;/table&gt;
+      ) : (
+        &lt;div className=&quot;form__table&quot;&gt;
+          No weather info yet. Left ther first one.
+        &lt;/div&gt;
+      );
+    let error;
+    if (this.state.error) {
+      error = &lt;div class=&quot;form__error&quot;&gt;Please select the city&lt;/div&gt;;
+    }
+    return (
+      &lt;div&gt;
+        {table}
+        &lt;form onSubmit={this.handleSubmit.bind(this)} className=&quot;form&quot;&gt;
+          {error}
+          &lt;Cities
+            cities={this.props.cities}
+            change={this.changeCity.bind(this)}
+            city={_.get(this.state, &quot;info.city&quot;)}
+          /&gt;
+
+          &lt;textarea
+            className=&quot;form__comment&quot;
+            value={this.state.comment}
+            onChange={this.changeComment.bind(this)}
+          /&gt;
+          &lt;div className=&quot;form__submit&quot;&gt;
+            &lt;input type=&quot;submit&quot; value=&quot;Add&quot; /&gt;
+          &lt;/div&gt;
+        &lt;/form&gt;
+      &lt;/div&gt;
+    );
+  }
+}
+
+export default Form;
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.4)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>
