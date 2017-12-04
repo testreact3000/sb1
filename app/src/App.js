@@ -1,8 +1,13 @@
 import React, { Component } from "react";
 import "./App.css";
-import Cities from "./Cities.js";
 import logo from "./logo.svg";
+/**
+ * @ignore
+ */
 class App extends Component {
+  /**
+   * @ignore
+   */
   render() {
     return (
       <div className="App">
@@ -13,7 +18,6 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <Cities />
       </div>
     );
   }

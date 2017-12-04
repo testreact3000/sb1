@@ -4,8 +4,15 @@ import React from "react";
 import ReactDOM from "react-dom";
 import UniversalRouter from "universal-router";
 import registerServiceWorker from "./registerServiceWorker";
+
+/**
+ * @const store Storage abstraction
+ */
 const store = require("store");
 
+/**
+ * Load list of world capitals.
+ */
 function loadCities() {
   return fetch(
     "https://cors-anywhere.herokuapp.com/http://country.io/capital.json"
@@ -27,12 +34,23 @@ function loadCities() {
     });
 }
 
+/**
+ * Save state of selector to history api.
+ */
 function changeCity(data) {
   window.history.pushState({ city: data.city }, null, `/city/${data.city}`);
 }
+
+/**
+ * Save state of component to abstract storage.
+ */
 function saveList(data) {
   store.set("form", JSON.stringify(data));
 }
+
+/**
+ * Routes
+ */
 const routes = [
   {
     path: "/",
@@ -67,7 +85,9 @@ const routes = [
     ]
   }
 ];
-
+/**
+ * @const router Universal router
+ */
 const router = new UniversalRouter(routes);
 
 router.resolve({ pathname: window.location.pathname }).then(rootComponent => {

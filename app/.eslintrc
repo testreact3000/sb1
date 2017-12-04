@@ -7,6 +7,7 @@
         "node": true
     },
     "extends": [
+        "react-app",
         "eslint:recommended",
         "fixable-all",
         "prettier",
@@ -53,6 +54,15 @@
           "ignoreMemberSort": false,
           "memberSyntaxSortOrder": ["none", "all", "multiple", "single"]
        }],
+       "require-jsdoc": ["error", {
+         "require": {
+           "FunctionDeclaration": true,
+           "MethodDefinition": false,
+           "ClassDeclaration": true,
+           "ArrowFunctionExpression": false,
+           "FunctionExpression": false
+         }
+       }]
 
     }
 }

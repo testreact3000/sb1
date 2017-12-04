@@ -11,7 +11,7 @@
  * To learn more about the benefits of this model, read https://goo.gl/KwvDNy.
  * This link also includes instructions on opting out of this behavior.
  */
-
+/* eslint-disable require-jsdoc */
 const isLocalhost = Boolean(
   window.location.hostname === "localhost" ||
     // [::1] is the IPv6 localhost address.
@@ -21,7 +21,9 @@ const isLocalhost = Boolean(
       /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
     )
 );
-
+/**
+ * @ignore
+ */
 export default function register() {
   if (process.env.NODE_ENV === "production" && "serviceWorker" in navigator) {
     // The URL constructor is available in all browsers that support SW.
@@ -110,7 +112,9 @@ function checkValidServiceWorker(swUrl) {
       /* eslint-enable no-console */
     });
 }
-
+/**
+ * @ignore
+ */
 export function unregister() {
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.ready.then(registration => {

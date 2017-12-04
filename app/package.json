@@ -54,7 +54,8 @@
     "build-storybook": "source ./.env; export NODE_PATH; build-storybook",
     "deploy-storybook": "source ./.env; export NODE_PATH; storybook-to-ghpages",
     "deploy": "npm run build&&gh-pages -d build",
-    "eslint": "source ./.env ;node node_modules/eslint/bin/eslint.js --config node_modules/eslint-config-react-app/index.js $NODE_PATH stories"
+    "eslint": "source ./.env ;node node_modules/eslint/bin/eslint.js --config node_modules/eslint-config-react-app/index.js $NODE_PATH stories",
+    "esdoc": "node node_modules/.bin/esdoc"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -105,6 +106,10 @@
     "@storybook/react": "^3.2.16",
     "@storybook/storybook-deployer": "^2.0.0",
     "dotenv-webpack": "^1.5.4",
+    "esdoc": "^1.0.4",
+    "esdoc-jsx-plugin": "^1.0.0",
+    "esdoc-react-plugin": "^1.0.1",
+    "esdoc-standard-plugin": "^1.0.0",
     "eslint": "^4.10.0",
     "eslint-config-fixable-all": "^4.11.0",
     "eslint-config-prettier": "^2.9.0",

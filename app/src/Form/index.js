@@ -2,19 +2,43 @@ import Cities from "Cities";
 import React, { Component } from "react";
 import _ from "lodash";
 import "Form/css/Form.css";
+/**
+ * Wheather form.
+ * -----
+ * It contains wheather selector by city, comment field and submit button
+ * @reactProps {Function(state)} onSubmit
+ * @reactProps {Array} cities List of cities
+ */
 class Form extends Component {
-  static defaultProps = {
-    list: [],
-    comment: "",
-    info: null,
-    error: false
-  };
+  /**
+   * @property {Array} list City data list
+   * @property {string} comment Unsaved comment field
+   * @property {object} info Unsaved weather info
+   * @property {Boolean} error Error flag
+   */
+  static get defaultProps() {
+    return {
+      list: [],
+      comment: "",
+      info: null,
+      error: false
+    };
+  }
 
+  /**
+   * @ignore
+   */
   constructor(props) {
     super(props);
+    /**
+     * @ignore
+     */
     this.state = _.assign({}, Form.defaultProps, props.defaults);
   }
 
+  /**
+   * Handle submit
+   */
   handleSubmit(e) {
     e.preventDefault();
     const state = _.clone(this.state, true);
@@ -28,7 +52,6 @@ class Form extends Component {
     } else {
       state.error = true;
     }
-
     this.setState(state, () => {
       if (this.props.onSubmit !== undefined) {
         this.props.onSubmit(this.state);
@@ -36,14 +59,23 @@ class Form extends Component {
     });
   }
 
+  /**
+   * Handle change city
+   */
   changeCity(info) {
     this.setState({ info });
   }
 
+  /**
+   * Handle change comment
+   */
   changeComment(e) {
     this.setState({ comment: e.target.value });
   }
 
+  /**
+   * Render single item of table
+   */
   listItem(data, id) {
     let wd = _.get(data, "info.weather_date");
     wd = wd === undefined ? "—" : wd.toString();
@@ -58,6 +90,9 @@ class Form extends Component {
     );
   }
 
+  /**
+   * @ignore
+   */
   render() {
     const table =
       this.state.list.length > 0 ? (

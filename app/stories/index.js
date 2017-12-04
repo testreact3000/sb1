@@ -38,7 +38,15 @@ storiesOf("Form", module)
   .add("With defaults", () => (
     // Prettier-ignore
     <Form
-      cities={["London", "Moscow", "Dhaka", "Mata Utu", "Apia", "Ouagadougou"]}
+      cities={[
+        "London",
+        "Moscow",
+        "Dhaka",
+        "Mata Utu",
+        "Apia",
+        "Ouagadougou",
+        "Brussels"
+      ]}
       defaults={{
         list: [
           {
@@ -446,7 +454,7 @@ storiesOf("Form", module)
             }
           }
         ],
-        comment: "",
+        comment: "trololo",
         info: {
           city: "Brussels",
           weather: {

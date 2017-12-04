@@ -1,0 +1,10 @@
+{
+  "source": "src/",
+  "destination": "./esdoc",
+  "plugins": [
+    {"name": "esdoc-react-plugin"},
+    {"name": "esdoc-jsx-plugin", "option": {"enable": true}},
+    {"name": "esdoc-standard-plugin"}
+  ]
+  
+}

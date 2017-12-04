@@ -2,9 +2,21 @@ import City from "City";
 import React, { Component } from "react";
 import "Cities/css/Cities.css";
 
+/**
+ * City selector
+ * @reactProps {Array} cities List of cities in selector
+ * @reactProps {string} city Cty selecetd by default
+ * @reactProps {Function} change Call on change city
+ */
 class Cities extends Component {
+  /**
+   * @ignore
+   */
   constructor(props) {
     super(props);
+    /**
+     * @ignore
+     */
     this.state = {
       cities: props.cities || [],
       errors: [],
@@ -15,6 +27,9 @@ class Cities extends Component {
     };
   }
 
+  /**
+   * Expose data for external usage for react component.
+   */
   get value() {
     return {
       city: this.state.city,
@@ -23,6 +38,10 @@ class Cities extends Component {
     };
   }
 
+  /**
+   * Handle change of city. Get weather from remote
+   * Call props.change if any
+   */
   handleChange(e) {
     const city = e.target.value;
     this.setState(
@@ -39,10 +58,16 @@ class Cities extends Component {
     );
   }
 
+  /**
+   * Redraw weather data on create component
+   */
   componentDidMount() {
     this.loadCityWeather(this.state.city);
   }
 
+  /**
+   * Load weather from openweathermap.org
+   */
   loadCityWeather(city) {
     clearTimeout(this.state.timeout);
     this.setState({
@@ -73,6 +98,9 @@ class Cities extends Component {
       });
   }
 
+  /**
+   * @ignore
+   */
   render() {
     let cities = this.state.cities.map((x, id) => (
       <option key={id} value={x}>
