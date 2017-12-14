@@ -114,7 +114,7 @@ class Form extends Component {
         </table>
       ) : (
         <div className="form__table">
-          No weather info yet. Left ther first one.
+          No weather info yet. Left the first one.
         </div>
       );
     let error;
