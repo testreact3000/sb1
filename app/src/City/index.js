@@ -6,7 +6,7 @@ class City extends Component {
     let icon, temp;
     if(this.props.weather){
         icon = <i className={`owi owi-${this.props.weather.weather[0].icon} city__weather`} />;
-	temp = `${this.props.weather.main.temp}°`;    
+	temp = `${Math.round(this.props.weather.main.temp - 273.15)}°`;    
     }
     	  
     return <div className="city">

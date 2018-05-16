@@ -15,7 +15,7 @@ storiesOf('Button', module)
   .add('with some emoji', () => <Button onClick={action('clicked')}>😀 😎 👍 💯</Button>);
 */
 storiesOf('City', module)
-    .add('weather', ()=> (<City weather={{weather:[{icon:"09d"}], main:{temp: 40}}}/> ));
+    .add('weather', ()=> (<City weather={{weather:[{icon:"09d"}], main:{temp: 40 + 273.15}}}/> ));
 
 storiesOf('Cities', module)
     .add('Not selected', ()=>(<Cities cities={["London","Moscow"]}/>))

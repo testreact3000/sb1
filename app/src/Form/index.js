@@ -42,10 +42,14 @@ class Form extends Component{
    listItem(data,id){
       let wd = _.get(data,"info.weather_date");
       wd = (wd === undefined)?"—":(wd.toString());
+      let temp =_.get(data,"info.weather.main.temp","—");
+      if(temp !== "—"){
+         temp = Math.round( temp - 273.15) + "°";
+      }
       return <tr key={id}>
         <td>{data.info.city}</td>
         <td>{wd}</td>
-        <td>{_.get(data,"info.weather.main.temp","—")}</td>
+        <td>{temp}</td>
         <td>{_.get(data,"info.weather.weather[0].description","—")}</td>
         <td>{data.comment}</td>
       </tr>		   
