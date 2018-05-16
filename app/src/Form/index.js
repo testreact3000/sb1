@@ -14,19 +14,20 @@ class Form extends Component{
    } 	
    handleSubmit(e){
      e.preventDefault();
+     let new_state = _.cloneDeep(this.state);	   
      if(this.state.info.city!==""){
-       this.state.error = false;	     
-       this.state.list.push({ 
+       new_state.error = false;	     
+       new_state.list.push({ 
 	comment: this.state.comment,
 	info: this.state.info,
        });
-       this.state.comment="";
+       new_state.comment="";
        	     
      }else{
-       this.state.error = true;
+       new_state.error = true;
      }
 	   
-     this.setState(this.state,()=>{
+     this.setState(new_state,()=>{
       if(this.props.onSubmit!==undefined){
         this.props.onSubmit(this.state);
       }
@@ -62,7 +63,7 @@ class Form extends Component{
 	{this.state.list.map( (data, id) => this.listItem(data,this.state.list.length - id))}
        </tbody>		   
      </table>
-     ):(<div className="form__table">No weather info yet. Left ther first one.</div>); 
+     ):(<div className="form__table">No weather info yet. Left the first one.</div>); 
      let error;
 	 if(this.state.error) error =<div class="form__error">Please select the city</div>;
     return <div>
